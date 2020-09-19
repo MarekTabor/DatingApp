@@ -33,7 +33,7 @@ namespace DatingApp.Controllers
 			userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
 			if (await _repo.UserExists(userForRegisterDto.Username))
-				return BadRequest("Podana nazwa użytkownika istnieje");
+				return BadRequest("Podana nazwa użytkownika jest już zajęta");
 
 			var userToCreate = new User
 			{
@@ -47,7 +47,7 @@ namespace DatingApp.Controllers
 		[HttpPost("login")]
 		public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
 		{
-			throw new Exception("Komputer mówi nie");
+		//	throw new Exception("Komputer mówi nie");
 
 			var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
